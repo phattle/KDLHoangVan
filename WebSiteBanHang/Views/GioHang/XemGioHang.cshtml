@@ -1,0 +1,163 @@
+﻿@using WebSiteBanHang.Models;
+
+@*Chuyển IEnumerable thành List*@
+@model List<itemGioHang>
+
+@{
+    ViewBag.Title = "XemGioHang";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script> 
+@if (Model.Count <= 0 || Model == null)
+{
+    <h1 style="color:red;text-align:center;font-weight:bold">GIỎ HÀNG RỖNG</h1>
+}
+else
+{
+    <div class="col-md-9 product1">
+        <h1 style="color:red;text-align:center;font-weight:bold">GIỎ HÀNG</h1>
+        <table class="table">
+            <tr>
+                <td><b>Mã sản phẩm</b></td>
+                <td><b>Tên sản phẩm</b></td>
+                <td><b>Hình ảnh</b></td>
+                <td><b>Số lượng</b></td>
+                <td><b>Đơn giá</b></td>
+                <td><b>Thành tiền</b></td>
+                    
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaSP</td>
+                    <td>@item.TenSP</td>
+                    <td><img src="@Url.Content("~/Content/HinhAnhSP/" + item.HinhAnh)" style="width:50px;height:50px" /></td>
+                    <td>@item.SoLuong</td>
+                    <td>@item.DonGia.ToString("#,##") đồng</td>
+                    <td>@item.ThanhTien.ToString("#,##") đồng</td>  
+                   
+                    @*Truyền tham số MaSP --- Tạo nút sửa link qua trang SuaGioHang*@
+                    <td>
+                        @Html.ActionLink("Sửa ||", "SuaGioHang", new { @maSP = item.MaSP })
+                        @Html.ActionLink("Xóa", "XoaGioHang", new { @maSP = item.MaSP })
+                    </td> 
+                </tr>
+            }
+        </table>
+     <hr />
+        <div  class="cart box_1">
+            <div class="total-price-modal">
+                <div class="total-price-modal TinhTongTien" ViewBag.TongTien = TinhTongTien()>
+                  <b>Tổng tiền: </b> VNĐ
+
+                   
+
+                </div>
+            </div> 
+        </div>
+        @*<div id="divGioHang" class="cart box_1">
+            <a href="@Url.Action("XemGioHang","GioHang")">
+                <div class="total">
+                    @ViewBag.TongTien.ToString("#,##") VNĐ (<span>@ViewBag.TongSoLuong</span> sp)
+                </div>
+                <img src="~/Content/images/cart.png" alt="" />
+            </a>
+            <p><a href="@Url.Action("XemGioHang","GioHang")" class="simpleCart_empty">Giỏ hàng</a></p>
+        </div>*@
+      
+        @using (Html.BeginForm("DatHang", "GioHang"))
+        {
+        if (Session["TaiKhoan"] == null)
+        {
+        <div class="ThongTinMuaHang">
+            <table align="center" class="table">
+                <tr>
+                    <td align="center"><h2><b>Thông tin khách hàng</b></h2></td>
+                </tr>
+                <tr>
+                    <td>Họ tên</td>
+                    <td>
+                        @Html.TextBox("TenKH", null, new { @class = "form-ValidationMessage-valid ", @data_val = "true", @data_val_required = "required" })
+                        <p style="color:red" id="TB_TenKH"></p>                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ</td>
+                    <td>
+                        @Html.TextArea("DiaChi", null, new { @class = "form-ValidationMessage-valid ", @data_val = "true", @data_val_required = "required" })
+                        <span style="color:red" id="TB_DiaChi"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        @Html.TextBox("Email", null, new { @class = "form-ValidationMessage-valid ", @data_val = "true", @data_val_required = "required" })
+                        <p style="color:red" id="ktEmail"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại</td>
+                    <td>
+                        @Html.TextBox("SoDienThoai", null, new { @class = "form-ValidationMessage-valid ", @data_val = "true", @data_val_required = "required" })
+                        <p style="color:red" id="TB_SoDienThoai"></p>
+                    </td>
+                </tr>  
+                @* <tr>
+                <td>Chọn ngày tham quan</td>
+                <td>
+                    <input type="date" id="NgayDat" class="form-control" value="" required="required">
+                    @Html.TextBox("NgayDat")
+                    <p style="color:red" id="NgayDat"></p>
+                                </td>
+                 </tr>*@
+            </table>
+        </div>
+        <script>
+            $("#btnnDatHang").click(function () {
+                var loi = 1;
+                if ($("#TenKH").val() == "") {
+                    $("#TB_TenKH").text("Tên khách hàng không được bỏ trống")
+                    return false; // ngăn sự kiện submit tới server
+                }
+                else {
+                    loi++;
+                    $("#TB_TenKH").text("");
+                }
+
+                if ($("#DiaChi").val() == "") {
+                    $("#TB_DiaChi").text("Địa chỉ không được bỏ trống")
+                    return false; // ngăn sự kiện submit tới server
+                }
+                else {
+                    loi++;
+                    $("#TB_DiaChi").text("");
+                }
+
+                if ($("#SoDienThoai").val() == "") {
+                    $("#SoDienThoai").text("Số điện thoại không được bỏ trống")
+                    return false; // ngăn sự kiện submit tới server
+                }
+                else {
+                    loi++;
+                    $("#TB_DiaChi").text("");
+                }
+
+                if (loi != 1) {
+                    return false;
+                }
+            });
+        </script>
+        }
+
+
+        <div class="col-md-9 divDatHang" style="text-align:left">
+            <input type="submit" value="Đặt hàng" id="btnnDatHang" />
+            <a class="button button2" href="/SanPham/SanPham?MaLoaiSP=3&MaNSX=6">Tiếp tục mua hàng</a>
+        </div>
+       
+      
+        }
+    </div>
+}

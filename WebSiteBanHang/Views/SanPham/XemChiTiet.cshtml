@@ -1,0 +1,92 @@
+﻿@using WebSiteBanHang.Models;
+
+@model SanPham
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Layout/ProductLayout.cshtml";
+}
+<style>
+    
+        .button2 {background-color: #008CBA;  
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<div class="col-md-9 product-price1">
+    <div class="col-md-7 single-top-in simpleCart_shelfItem">
+        <div class="single-para ">
+            <h4>@Model.TenSP</h4>
+            <div class="star-on">
+                <ul class="star-footer">
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                    <li><a href="#"><i> </i></a></li>
+                </ul>
+                <div class="review">
+                    <a href="#"> @Model.LuotXem </a>
+                </div>
+                <div class="clearfix"> </div>
+                <h5 class="item_price">@Model.DonGia.Value.ToString("#,##") VNĐ</h5>
+                <a  class="button button2" href="SanPham/SanPham?MaLoaiSP=3&MaNSX=6">Mua hàng</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10 single-top">
+        <div class="flexslider">
+            <ul class="slides">
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh)" />
+                </li>
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh1)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh1)" />
+                </li>
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh2)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh2)" />
+                </li>
+                <li data-thumb="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh3)">
+                    <img src="@Url.Content("~/Content/HinhAnhSP/" + Model.HinhAnh3)" />
+                </li>
+            </ul>
+        </div>
+      
+        <script defer src="~/Content/js/jquery.flexslider.js"></script>
+        <link rel="stylesheet" href="~/Content/css/flexslider.css" type="text/css" media="screen" />
+        <script>
+// Can also be used with $(document).ready()
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide",
+    controlNav: "thumbnails"
+  });
+});
+        </script>
+    </div>
+    <div class="col-md-7 single-top-in simpleCart_shelfItem">
+
+        <div class="single-para ">
+          
+            <h3>* Thông tin</h3>
+            <p>
+                @Html.Raw(Model.CauHinh)
+            </p>
+            @*<a href="#" class="add-cart item_add">Giỏ hàng</a>*@
+            <h3>* Chi tiết</h3>
+            <p>@Html.Raw(Model.MoTa)</p>
+            
+            
+        </div>
+    </div>
+    
+    <div class="clearfix"></div>
+    
+  
+</div>

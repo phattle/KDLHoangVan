@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>TICKET</title>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <!--theme-style-->
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'><!--//fonts-->
+    <!-- start menu -->
+    <link href="~/Content/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Content/js/memenu.js"></script>
+    <script>$(document).ready(function(){$(".memenu").memenu();});</script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/js/simpleCart.min.js"> </script>
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        @Html.Partial("~/Views/Layout/HeaderTopPartial.cshtml")
+        <div class="container">
+            <div class="head-top">
+                @*<div class="logo">
+                        <a href="/Home"><img src="~/Content/images/lo3.png" alt=""></a>
+                    </div>*@
+                @Html.Action("MenuPartial", "Home")
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+    </div>
+    <!--content-->
+    <!---->
+    <div class="product">
+        <div class="container">
+            <div class="col-md-3 product-price">
+                <div class="rsidebar span_1_of_left">
+                    <div class="of-left">
+                        <h3>Khu vực</h3>
+                    </div>
+                    <ul class="menu">
+                        <li class="item1">
+                            <a href="#">Vé trò chơi</a>
+                            <ul class="cute">
+                                <li class="subitem1"><a href="/SanPham/SanPham?MaLoaiSP=3&MaNSX=14">Vé trò chơi</a></li>
+                                <li class="subitem2"><a href="/SanPham/SanPham?MaLoaiSP=3&MaNSX=15">Vé đua xe</a></li>
+                                @*<li class="subitem3"><a href="#">Vé loại 3</a></li>
+                                    <li class="subitem4"><a href="#">Vé loại 4</a></li>*@
+                            </ul>
+                        </li>
+                        <li class="item2">
+                            <a href="#">Vé vào cổng</a>
+                            <ul class="cute">
+                                <li class="subitem1"><a href="/SanPham/SanPham?MaLoaiSP=3&MaNSX=6">Vé trọn gói</a></li>
+                                <li class="subitem2"><a href="/SanPham/SanPham?MaLoaiSP=3&MaNSX=5">VIP</a></li>
+                                @*<li class="subitem3"><a href="#">Stuff</a></li>*@
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--initiate accordion-->
+                <script type="text/javascript">
+			$(function() {
+			    var menu_ul = $('.menu > li > ul'),
+			           menu_a  = $('.menu > li > a');
+			    menu_ul.hide();
+			    menu_a.click(function(e) {
+			        e.preventDefault();
+			        if(!$(this).hasClass('active')) {
+			            menu_a.removeClass('active');
+			            menu_ul.filter(':visible').slideUp('normal');
+			            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+			        } else {
+			            $(this).removeClass('active');
+			            $(this).next().stop(true,true).slideUp('normal');
+			        }
+			    });
+
+			});
+                </script>
+                <!---->
+                @*<div class="product-middle">
+
+                        <div class="fit-top">
+                            <h6 class="shop-top">Lorem Ipsum</h6>
+                            <a href="#" class="shop-now">SHOP NOW</a>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                    <div class="sellers">
+                        <div class="of-left-in">
+                            <h3 class="tag">Tags</h3>
+                        </div>
+                        <div class="tags">
+                            <ul>
+                                <li><a href="#">design</a></li>
+                                <li><a href="#">fashion</a></li>
+                                <li><a href="#">lorem</a></li>
+                                <li><a href="#">dress</a></li>
+                                <li><a href="#">fashion</a></li>
+                                <li><a href="#">dress</a></li>
+                                <li><a href="#">design</a></li>
+                                <li><a href="#">dress</a></li>
+                                <li><a href="#">design</a></li>
+                                <li><a href="#">fashion</a></li>
+                                <li><a href="#">lorem</a></li>
+                                <li><a href="#">dress</a></li>
+
+
+                            </ul>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                    </div>
+                    <!---->
+                    <div class="product-bottom">
+                        <div class="of-left-in">
+                            <h3 class="best">Best Sellers</h3>
+                        </div>
+                        <div class="product-go">
+                            <div class="fashion-grid">
+                                <a href="#"><img class="img-responsive " src="~/Content/images/p1.jpg" alt=""></a>
+
+                            </div>
+                            <div class="fashion-grid1">
+                                <h6 class="best2">
+                                    <a href="#">
+                                        Lorem ipsum dolor sit
+                                        amet consectetuer
+                                    </a>
+                                </h6>
+
+                                <span class="price-in1"> $40.00</span>
+                            </div>
+
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="product-go">
+                            <div class="fashion-grid">
+                                <a href="#"><img class="img-responsive " src="~/Content/images/p2.jpg" alt=""></a>
+
+                            </div>
+                            <div class="fashion-grid1">
+                                <h6 class="best2">
+                                    <a href="#">
+                                        Lorem ipsum dolor sit
+                                        amet consectetuer
+                                    </a>
+                                </h6>
+
+                                <span class="price-in1"> $40.00</span>
+                            </div>
+
+                            <div class="clearfix"> </div>
+                        </div>
+
+                    </div>
+                    <div class="per1">
+                        <a href="#">
+                            <img class="img-responsive" src="~/Content/images/pro.jpg" alt="">
+                            <div class="six1">
+                                <h4>DISCOUNT</h4>
+                                <p>Up to</p>
+                                <span>60%</span>
+                            </div>
+                        </a>
+                    </div>*@
+            </div>
+            @RenderBody()
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <!--//content-->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-top-at">
+                <div class="col-md-4 amet-sed">
+                    <h4>Hướng dẫn mua hàng:</h4>
+                    <p>
+                        B1 : Thêm sản phẩm vào giỏ hàng<br />
+                        B2 : Kiểm tra sản phẩm trong giỏ hàng <br />
+                        B3 : Nhập thông tin khách hàng <br />
+                        B4 : Đặt hàng <br />
+                    </p>
+                </div>
+                <div class="col-md-4 amet-sed ">
+                    <h4>Ghi chú :</h4>
+                    <p>
+                        Sau đây là số tài khoản để test<br />
+                        - Ngân hàng :<b style="color:red"> ABBBANK</b> <br />
+                        - Số thẻ : <b style="color:red"> 9704250000000001</b> <br />
+                        - Ngày phát hành :<b style="color:red"> 01/13</b> <br />
+                        - Tên trên thẻ :<b style="color:red"> NGUYEN VAN A</b> <br /><br />
+
+
+                </div>
+                <div class="col-md-4 amet-sed">
+
+
+                    <h4>Lưu ý bước nhập OTP:</h4>
+                    <p>
+                        Trường hợp nhập OTP và thanh toán lỗi sẽ xuất hiện <b style="color:red">"Chuỗi kiểm tra không đúng, xin vui lòng nhập lại"</b>
+                        thì bạn nhấp chọn quay lại và nhập lại OTP, tránh trường hợp nhập OTP liên tục.
+                        <br /> - OTP :<b style="color:red"> 123456</b> <br />
+                    </p>
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

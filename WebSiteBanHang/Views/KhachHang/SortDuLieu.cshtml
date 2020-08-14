@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebSiteBanHang.Models.KhachHang>
+
+
+@{
+    ViewBag.Title = "SortDuLieu";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2>Dữ liệu khách hàng</h2>
+<hr />
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 5px;
+        text-align: center;
+    }
+</style>
+<table style="width:100%">
+    <tr>
+        <th>
+            Mã khách hàng
+        </th>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+           Số điện thoại    
+        </th>
+        <th>
+            Mã thành viên
+        </th>
+       
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaThanhVien)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>*@
+        </tr>
+    }
+</table>

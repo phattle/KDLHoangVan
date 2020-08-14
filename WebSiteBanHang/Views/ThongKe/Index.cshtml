@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<div class="col-md-10 content">
+
+    <div>
+        <div class="sales">
+            <div class="icon">
+                <i class="dollar"></i>
+            </div>
+            <div class="icon-text">
+                <p> DOANH THU</p>
+                <h4>@ViewBag.TongDoanhThu.ToString("#,##") <sup style="font-size: 10px">VND</sup></h4>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="orders">
+            <div class="icon">
+                <i class="order"></i>
+            </div>
+            <div class="icon-text">
+                <P>SỐ ĐƠN HÀNG</P>
+                <h4>@ViewBag.TongDDH <sup style="font-size: 10px">ĐƠN</sup></h4>
+
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="new-users">
+            <div class="icon">
+                <i class="user1"></i>
+            </div>
+            <div class="icon-text">
+                <p> THÀNH VIÊN</p>
+                <h4> @ViewBag.TongThanhVien <sup style="font-size: 10px">NGƯỜI</sup></h4>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+       
+
+
+    </div>
+    <hr />
+
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+@using (Ajax.BeginForm("Index", "ThongKe", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "ThongBao" }))
+{
+    <input type="text" name="txtThang" placeholder="Nhập tháng..." />
+        <input type="text" name="txtNam" placeholder="Nhập năm..." />
+        <input type="submit" value="Thống kê" />
+        @*<h2 id="ThongBao">Tổng doanh thu: <font color="red"></font></h2>*@
+}
+<hr />
+<h2>Tổng doanh thu: <font color="red">@ViewBag.TongDoanhThu.ToString("#,##") <sup style="font-size: 20px">VNĐ</sup> </font></h2>
+<br />
+<h2>Tổng số lượng đơn đặt hàng: <font color="red">@ViewBag.TongDDH <sup style="font-size: 20px">ĐƠN</sup> </font></h2>
+<br />
+<h2>Tổng số lượng thành viên: <font color="red">@ViewBag.TongThanhVien <sup style="font-size: 20px">THÀNH VIÊN</sup> </font></h2>
+<br />
+@*<h2>Tổng doanh thu tháng 12/2017: <font color="red">@ViewBag.TongDoanhThuTheoThang.ToString("#,##") VNĐ</font></h2>*@
+
+
+   
